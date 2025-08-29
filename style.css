@@ -1,0 +1,40 @@
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #3949ab;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+header h1 {
+  margin: 0;
+}
+.contact p, .contact a {
+  color: white;
+  margin: 5px 0;
+}
+main {
+  padding: 20px;
+}
+section {
+  margin-bottom: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+}
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+a {
+  color: #3949ab;
+  text-decoration: none;
+}
