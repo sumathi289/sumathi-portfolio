@@ -4,40 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sumathi M N - Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: #f5f5f5;
     }
 
     header {
-      background-color: #3f51b5;
+      background-color: #3546a6;
       color: white;
-      text-align: center;
       padding: 40px 20px;
-      animation: fadeIn 1s ease-in-out;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-
-    .contact p {
-      margin: 8px 0;
-    }
-
-    a {
-      color: #ffcc00;
-      text-decoration: none;
+    .contact {
+      margin-top: 10px;
+      font-size: 16px;
     }
 
     main {
@@ -45,35 +31,38 @@
     }
 
     section {
-      margin-bottom: 30px;
-      background-color: #fff;
+      background-color: white;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.05);
-      animation: slideUp 0.8s ease forwards;
-      opacity: 0;
-    }
-
-    section h2 {
-      color: #3f51b5;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 1s ease-in-out;
     }
 
     footer {
-      background-color: #3f51b5;
+      background-color: #3546a6;
       color: white;
       text-align: center;
-      padding: 15px;
-      margin-top: 30px;
+      padding: 10px;
     }
 
-    /* Chatbot styling */
+    a {
+      color: #3546a6;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Chatbot Styles */
     #chatbot {
       position: fixed;
       bottom: 20px;
       right: 20px;
       width: 300px;
       max-height: 400px;
-      background: #fff;
+      background: white;
       border: 1px solid #ccc;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -81,14 +70,14 @@
       flex-direction: column;
       overflow: hidden;
       z-index: 9999;
+      animation: fadeIn 1s ease-in-out;
     }
 
     #chatbot-header {
-      background: #3f51b5;
+      background: #3546a6;
       color: white;
       padding: 10px;
       font-weight: bold;
-      text-align: center;
     }
 
     #chat-messages {
@@ -98,23 +87,23 @@
       font-size: 14px;
     }
 
-    #chat-input {
+    #chatbot-input {
       display: flex;
       border-top: 1px solid #ccc;
     }
 
-    #chat-input input {
+    #user-input {
       flex: 1;
-      padding: 10px;
+      padding: 8px;
       border: none;
       outline: none;
     }
 
-    #chat-input button {
-      padding: 10px;
-      background: #3f51b5;
-      color: white;
+    #send-btn {
+      padding: 8px 15px;
       border: none;
+      background: #3546a6;
+      color: white;
       cursor: pointer;
     }
 
@@ -124,21 +113,15 @@
       to { opacity: 1; }
     }
 
-    @keyframes slideUp {
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
-    /* Scroll animation trigger */
-    .visible {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
     }
   </style>
 </head>
@@ -157,7 +140,6 @@
       <h2>About Me</h2>
       <p>Motivated Python Developer with 1 year of experience at Biztechnosys, specializing in ERPNext customizations and report building. Skilled in Python, HTML, JavaScript, CSS, SQL, and frameworks like Frappe and Vtiger CRM.</p>
     </section>
-
     <section>
       <h2>Skills</h2>
       <ul>
@@ -166,7 +148,6 @@
         <li>Tools: Git, Postman, VS Code, MySQL, Bench CLI</li>
       </ul>
     </section>
-
     <section>
       <h2>Experience</h2>
       <h3>Python Developer – Biztechnosys Pvt Ltd (Aug 2024 – Present)</h3>
@@ -177,12 +158,10 @@
         <li>Worked on Vtiger CRM: Infra Eye – Maintenance & Society Registration</li>
       </ul>
     </section>
-
     <section>
       <h2>Education</h2>
       <p>B.E in Computer Science & Engineering<br>Government Engineering College, Mosalehosahalli, Hassan (2024)</p>
     </section>
-
     <section>
       <h2>Resume</h2>
       <p><a href="resume.pdf" target="_blank">Download My Resume (PDF)</a></p>
@@ -193,18 +172,17 @@
     <p>&copy; 2025 Sumathi M N. All rights reserved.</p>
   </footer>
 
-  <!-- Chatbot Widget -->
+  <!-- Chatbot -->
   <div id="chatbot">
     <div id="chatbot-header">Chat with Me</div>
-    <div id="chat-messages">
-      <div><strong>Bot:</strong> Hi! Ask me anything about Sumathi's resume or experience.</div>
-    </div>
-    <div id="chat-input">
-      <input type="text" id="user-input" placeholder="Type a message..." />
-      <button onclick="sendMessage()">Send</button>
+    <div id="chat-messages"></div>
+    <div id="chatbot-input">
+      <input type="text" id="user-input" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') sendMessage()" />
+      <button id="send-btn" onclick="sendMessage()">Send</button>
     </div>
   </div>
 
+  <!-- Chatbot Script -->
   <script>
     function sendMessage() {
       const input = document.getElementById('user-input');
@@ -215,32 +193,26 @@
       chatBox.innerHTML += `<div><strong>You:</strong> ${message}</div>`;
 
       let response = "Thanks for your message!";
-      if (message.toLowerCase().includes("sumathi")) {
-        response = "Sumathi M N is a Python & ERPNext Developer with experience in ERPNext customizations, reports, and Frappe framework.";
-      } else if (message.toLowerCase().includes("skills")) {
-        response = "Skills: Python, HTML, CSS, JS, SQL, ERPNext, Frappe, Git, Postman, Vtiger CRM.";
-      } else if (message.toLowerCase().includes("experience")) {
-        response = "Experience: Worked as Python Developer at Biztechnosys customizing ERPNext and Vtiger modules.";
-      } else if (message.toLowerCase().includes("resume")) {
-        response = "You can download the resume by clicking 'Download My Resume (PDF)' in the Resume section.";
+      const lowerMessage = message.toLowerCase();
+
+      if (lowerMessage.includes("sumathi")) {
+        response = "Sumathi M N is a Python & ERPNext Developer with 1 year of experience in ERPNext customizations and report building.";
+      } else if (lowerMessage.includes("skills")) {
+        response = "Skills: Python, HTML, CSS, JavaScript, SQL, ERPNext, Frappe, Git, Postman, Vtiger CRM.";
+      } else if (lowerMessage.includes("experience")) {
+        response = "She works at Biztechnosys Pvt Ltd since Aug 2024, mainly on ERPNext customizations and reports.";
+      } else if (lowerMessage.includes("education")) {
+        response = "Sumathi completed her B.E in Computer Science & Engineering from Government Engineering College, Hassan in 2024.";
+      } else if (lowerMessage.includes("resume")) {
+        response = "You can download the resume from the Resume section of the portfolio.";
+      } else {
+        response = "Sorry, I didn’t understand that. Try asking about 'skills', 'education', or 'experience'.";
       }
 
       chatBox.innerHTML += `<div><strong>Bot:</strong> ${response}</div>`;
       input.value = "";
       chatBox.scrollTop = chatBox.scrollHeight;
     }
-
-    // Animate sections on scroll
-    const sections = document.querySelectorAll("section");
-    window.addEventListener("scroll", () => {
-      const triggerBottom = window.innerHeight / 1.1;
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        if (sectionTop < triggerBottom) {
-          section.classList.add("visible");
-        }
-      });
-    });
   </script>
 </body>
 </html>
