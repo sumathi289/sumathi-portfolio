@@ -56,4 +56,35 @@
   <!-- Chatbot Widget -->
   <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; max-height: 400px; background: #fff; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 9999;">
     <div style="background: #7c98d6; color: white; padding: 10px; font-weight: bold;">Chat with Me</div>
-    <div id="chat-messages" style="padding: 10px; flex: 1; overflow-y: auto; f
+    <div id="chat-messages" style="padding: 10px; flex: 1; overflow-y: auto; font-size: 14px;"></div>
+    <input id="chat-input" type="text" placeholder="Type a message..." style="border: none; border-top: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;" onkeydown="handleChatKey(event)">
+  </div>
+
+  <!-- Chatbot Toggle Button -->
+  <button onclick="toggleChat()" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; background: #7c98d6; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px;">💬</button>
+
+  <script>
+    function toggleChat() {
+      const bot = document.getElementById("chatbot");
+      bot.style.display = bot.style.display === "none" ? "flex" : "none";
+    }
+
+    function handleChatKey(e) {
+      if (e.key === "Enter") {
+        const input = document.getElementById("chat-input");
+        const msg = input.value.trim();
+        if (msg) {
+          const chatBox = document.getElementById("chat-messages");
+          chatBox.innerHTML += `<div><strong>You:</strong> ${msg}</div>`;
+          input.value = "";
+          setTimeout(() => {
+            chatBox.innerHTML += `<div><strong>Bot:</strong> Thanks for your message!</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }, 500);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
