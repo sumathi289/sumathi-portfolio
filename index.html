@@ -53,15 +53,15 @@
     <p>&copy; 2025 Sumathi M N. All rights reserved.</p>
   </footer>
 
-  <!-- Chatbot Widget -->
-  <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; max-height: 400px; background: #fff; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 9999;">
-    <div style="background: #7c98d6; color: white; padding: 10px; font-weight: bold;">Chat with Me</div>
-    <div id="chat-messages" style="padding: 10px; flex: 1; overflow-y: auto; font-size: 14px;"></div>
-    <input id="chat-input" type="text" placeholder="Type a message..." style="border: none; border-top: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;" onkeydown="handleChatKey(event)">
-  </div>
-
   <!-- Chatbot Toggle Button -->
-  <button onclick="toggleChat()" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; background: #7c98d6; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px;">💬</button>
+  <button onclick="toggleChat()" style="position: fixed; bottom: 20px; right: 20px; background: #7c98d6; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; z-index: 9999;">💬</button>
+
+  <!-- Chatbot Widget -->
+  <div id="chatbot" style="position: fixed; bottom: 80px; right: 20px; width: 300px; max-height: 400px; background: #fff; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 9999;">
+    <div style="background: #7c98d6; color: white; padding: 10px; font-weight: bold;">Chat with Me</div>
+    <div id="chat-messages" style="padding: 10px; flex: 1; overflow-y: auto; font-size: 14px; max-height: 250px;"></div>
+    <input id="chat-input" type="text" placeholder="Type a message..." onkeydown="handleChatKey(event)" style="border: none; border-top: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;">
+  </div>
 
   <script>
     function toggleChat() {
@@ -72,19 +72,36 @@
     function handleChatKey(e) {
       if (e.key === "Enter") {
         const input = document.getElementById("chat-input");
-        const msg = input.value.trim();
+        const msg = input.value.trim().toLowerCase();
         if (msg) {
           const chatBox = document.getElementById("chat-messages");
           chatBox.innerHTML += `<div><strong>You:</strong> ${msg}</div>`;
           input.value = "";
+
+          let reply = "Sorry, I didn't understand that.";
+
+          // Keyword-based replies
+          if (msg.includes("sumathi")) {
+            reply = "Sumathi M N is a Python & ERPNext Developer with 1 year of experience at Biztechnosys Pvt Ltd.";
+          } else if (msg.includes("skills")) {
+            reply = "Skills: Python, HTML, CSS, JavaScript, SQL, Frappe, ERPNext, Vtiger CRM, Git, Postman, VS Code.";
+          } else if (msg.includes("experience")) {
+            reply = "She worked on ERPNext customizations, workflows, reports, and Vtiger CRM for Infra Eye project.";
+          } else if (msg.includes("contact")) {
+            reply = "📧 sumathimn2002@gmail.com | 📞 9353681413";
+          } else if (msg.includes("linkedin")) {
+            reply = "Here is her LinkedIn: https://www.linkedin.com/in/sumathi-m-n-5241052b8/";
+          } else if (msg.includes("resume")) {
+            reply = 'Download her resume: <a href="resume.pdf" target="_blank">Click here (PDF)</a>';
+          }
+
           setTimeout(() => {
-            chatBox.innerHTML += `<div><strong>Bot:</strong> Thanks for your message!</div>`;
+            chatBox.innerHTML += `<div><strong>Bot:</strong> ${reply}</div>`;
             chatBox.scrollTop = chatBox.scrollHeight;
           }, 500);
         }
       }
     }
   </script>
-
 </body>
 </html>
